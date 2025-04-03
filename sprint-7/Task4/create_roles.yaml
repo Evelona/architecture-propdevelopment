@@ -1,0 +1,35 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cluster-viewer
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "deployments", "nodes", "namespaces", "configmaps", "events", "persistentvolumes", "persistentvolumeclaims"]
+    verbs: ["get", "list", "watch"]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cluster-admin
+rules:
+  - apiGroups: ["*"]
+    resources:
+      - pods
+      - services
+      - configmaps
+      - nodes
+      - persistentvolumes
+      - persistentvolumeclaims
+      - namespaces
+    verbs: ["*"]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: secret-ninja
+rules:
+  - apiGroups: [""]
+    resources: ["secrets", "configmap"]
+    verbs: ["get", "list", "update", "patch"]
+---
